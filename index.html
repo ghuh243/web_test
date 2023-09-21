@@ -49,6 +49,22 @@
             align-items: center; /* 버튼을 수직 가운데 정렬 */
         }
 
+        .sticky .special-link {
+            text-decoration: none; /* 스티키 버튼 내의 링크에 밑줄 없애기 */
+            color: inherit; /* 스티키 버튼 내의 링크에 상위 요소의 색상 상속 */
+        }
+
+        /* 스티키 버튼 스타일 */
+        .sticky .button {
+            background-color: #568ae5; /* 초기 배경 색상 */
+            color: white; /* 초기 텍스트 색상 */
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+
+            transition: background-color 0.5s ease;
+        }
+
 
         .color-change {
             background-color: white; /* 변경할 색상 */
@@ -76,10 +92,10 @@
 
 <div class="sticky" id="sticky-element">
     <div class="button-container">
-        <button class="button"><a href="#main">냉혹한 지구촌</a></button>
-        <button class="button"><a href="#History">History</a></button>
-        <button class="button"><a href="#Nature">Nature</a></button>
-        <button class="button"><a href="#Short">Short</a></button>
+        <button class="button"><a href="#main" class="special-link button">냉혹한 지구촌</a></button>
+        <button class="button"><a href="#History" class="special-link button">History</a></button>
+        <button class="button"><a href="#Nature" class="special-link button">Nature</a></button>
+        <button class="button"><a href="#Short" class="special-link button">Short</a></button>
     </div>
 </div>
 
