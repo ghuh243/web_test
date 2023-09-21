@@ -28,9 +28,10 @@
             margin:0;
             padding: 0;
         }
-        h1 {
-            text-align: center;
-            /*margin-right: 70%;*/
+        banner {
+            margin-left: 10%;
+            font-size: 50px;
+            color: white
         }
 
 
@@ -86,16 +87,21 @@
             transition: background-color 0.5s ease;
         }
 
+
+        section {
+            margin-left: 5%; /* 오른쪽 여백을 20px로 지정 */
+        }
+
     </style>
 </head>
 <body>
 
 <div class="sticky" id="sticky-element">
     <div class="button-container">
-        <button class="button"><a href="#main" class="special-link button">냉혹한 지구촌</a></button>
-        <button class="button"><a href="#History" class="special-link button">History</a></button>
-        <button class="button"><a href="#Nature" class="special-link button">Nature</a></button>
-        <button class="button"><a href="#Short" class="special-link button">Short</a></button>
+        <button class="button scrollToTop"><a class="special-link button">Main</a></button>
+        <button class="button scroll-button" data-target="History">History</button>
+        <button class="button scroll-button" data-target="Nature">Nature</button>
+        <button class="button scroll-button" data-target="Short">Short</button>
     </div>
 </div>
 
@@ -125,10 +131,37 @@
             }
         });
     });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth" // 부드러운 스크롤 효과를 원한다면 "smooth" 사용
+        });
+    }
+
+    // 버튼 클릭 이벤트 처리
+    var scrollToTopButton = document.querySelector('.scrollToTop');
+    scrollToTopButton.addEventListener("click", scrollToTop);
+
+    var scrollButtons = document.querySelectorAll('.scroll-button');
+
+    scrollButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            var targetId = this.getAttribute('data-target');
+            var targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: "smooth" // 부드러운 스크롤 효과를 적용
+                });
+            }
+        });
+    });
 </script>
 
 <header>
-    <h1><br><br><br><br><br>냉혹한 지구촌 시리즈</h1>
+    <banner><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;냉혹한 지구촌 시리즈</banner>
 </header>
 
 <!--<hr>-->
@@ -491,9 +524,11 @@
         </a><br>
     </li>
 </ul>
+</section>
 
 <hr>
 
+<section>
 <h3 id="Nature">냉혹한 자연의 세계</h3>
 <ul>
     <li>
@@ -692,9 +727,11 @@
         </a><br>
     </li>
 </ul>
+</section>
 
 <hr>
 
+<section>
 <h3 id="Short">냉혹하지도 않은 세계</h3>
 <ul>
     <li>
