@@ -9,7 +9,7 @@
             background-color: #568ae5;
             margin:0;
             width: 100%;
-            height: 100px;
+            height: 400px;
         }
         h1 { color: white}
 
@@ -30,6 +30,7 @@
         }
         h1 {
             text-align: center;
+            /*margin-right: 70%;*/
         }
 
 
@@ -37,38 +38,86 @@
         .sticky {
             position: fixed;
             top: 0;
-            background-color: #ffffff;
+            background-color: #568ae5;
             padding: 10px;
             border-bottom: 1px solid #ccc;
             width: 100%;
+            transition: background-color 0.5s ease;
+
+            display: flex; /* Flexbox 레이아웃 사용 */
+            justify-content: space-between; /* 오른쪽에 버튼 배치 */
+            align-items: center; /* 버튼을 수직 가운데 정렬 */
         }
 
 
-        .content {
-            margin-top: 60px; /* 스티키 요소의 높이만큼 여백을 주어 겹치지 않게 함 */
-            padding: 20px;
+        .color-change {
+            background-color: white; /* 변경할 색상 */
         }
+
+        .button-container {
+            display: flex; /* 버튼들을 가로로 나열하기 위한 Flex 컨테이너 */
+            gap: 10px; /* 버튼 사이의 간격 설정 */
+            margin-right: 70%;
+        }
+
+        .button {
+            background-color: #568ae5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+
+            transition: background-color 0.5s ease;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="sticky">
-    <p>이 영역은 항상 화면 상단에 고정됩니다.</p>
-</div>
-<div class="content">
-    <p>이 부분은 페이지 내용입니다. 여기에 내용을 추가하세요.</p>
+<div class="sticky" id="sticky-element">
+    <div class="button-container">
+        <button class="button"><a href="#main">냉혹한 지구촌</a></button>
+        <button class="button"><a href="#History">History</a></button>
+        <button class="button"><a href="#Nature">Nature</a></button>
+        <button class="button"><a href="#Short">Short</a></button>
+    </div>
 </div>
 
-<!--<header>-->
-<!--    <h1><a href="https://gall.dcinside.com/mgallery/board/view/?id=gfl2&no=2875028">냉혹한 지구촌 시리즈</a></h1>-->
-<!--</header>-->
+<script>
+    // 스티키 요소를 선택합니다.
+    const stickyElement = document.getElementById('sticky-element');
+    const buttons = document.querySelectorAll('.button');
+
+    // 스크롤 이벤트를 감지하여 스타일 변경 함수를 호출합니다.
+    window.addEventListener('scroll', () => {
+        // 스크롤 위치를 확인합니다 (예: 300px 이후에 스타일 변경).
+        const scrollPosition = window.scrollY;
+        if (scrollPosition >= 350) {
+            stickyElement.classList.add('color-change'); // 스타일을 변경하는 클래스 추가
+        } else {
+            stickyElement.classList.remove('color-change'); // 스타일을 변경하는 클래스 제거
+        }
+
+        buttons.forEach(button => {
+            // 스크롤 위치가 300px 이상인 경우 버튼의 색상을 변경
+            if (scrollPosition >= 350) {
+                button.style.backgroundColor = '#ffffff'; // 변경할 색상
+                button.style.color = '#568ae5';
+            } else {
+                button.style.backgroundColor = '#568ae5'; // 초기 색상
+                button.style.color = '#ffffff';
+            }
+        });
+    });
+</script>
+
 <header>
-    <h1>냉혹한 지구촌 시리즈</h1>
+    <h1><br><br><br><br><br>냉혹한 지구촌 시리즈</h1>
 </header>
 
 <!--<hr>-->
 <section>
-<h3>냉혹한 역사의 세계</h3>
+<h3 id="History">냉혹한 역사의 세계</h3>
 <ul>
     <li>
         <a href="https://gall.dcinside.com/mgallery/board/view/?id=gfl2&no=3680025" target="_blank">
@@ -429,7 +478,7 @@
 
 <hr>
 
-<h3>냉혹한 자연의 세계</h3>
+<h3 id="Nature">냉혹한 자연의 세계</h3>
 <ul>
     <li>
         <a href="https://gall.dcinside.com/mgallery/board/view/?id=gfl2&no=3472339" target="_blank">
@@ -630,7 +679,7 @@
 
 <hr>
 
-<h3>냉혹하지도 않은 세계</h3>
+<h3 id="Short">냉혹하지도 않은 세계</h3>
 <ul>
     <li>
         <a href="https://gall.dcinside.com/mgallery/board/view/?id=gfl2&no=3651192" target="_blank">
